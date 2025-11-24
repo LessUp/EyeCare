@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Play, RotateCcw, Info, Brain } from 'lucide-react';
+import { saveTrainingSession } from '@/lib/progress-tracker';
 
 export default function GaborGame() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -11,6 +12,8 @@ export default function GaborGame() {
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [difficulty, setDifficulty] = useState(1);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [startTime, setStartTime] = useState<number>(0);
   
   // Game state
   const [targetOrientation, setTargetOrientation] = useState<'left' | 'right' | null>(null);
@@ -122,21 +125,46 @@ export default function GaborGame() {
     if (correct) {
       setFeedback('correct');
       setScore(s => s + 10 * difficulty);
+      setCorrectCount(c => c + 1);
       if (round % 3 === 0) setDifficulty(d => Math.min(d + 1, 20));
     } else {
       setFeedback('wrong');
       setDifficulty(d => Math.max(1, d - 1));
     }
     
-    setRound(r => r + 1);
+    const newRound = round + 1;
+    setRound(newRound);
+    
+    // Save progress every 20 rounds
+    if (newRound > 0 && newRound % 20 === 0) {
+      saveProgress(newRound);
+    }
+    
     setTimeout(startRound, 1000);
+  };
+
+  const saveProgress = (currentRound: number) => {
+    const duration = (Date.now() - startTime) / 1000;
+    const accuracy = currentRound > 0 ? (correctCount / currentRound) * 100 : 0;
+    
+    saveTrainingSession({
+      gameType: 'gabor',
+      timestamp: Date.now(),
+      duration,
+      score,
+      difficulty,
+      accuracy,
+      rounds: currentRound
+    });
   };
 
   const startGame = () => {
     setIsPlaying(true);
     setScore(0);
     setRound(0);
+    setCorrectCount(0);
     setDifficulty(1);
+    setStartTime(Date.now());
     startRound();
   };
 

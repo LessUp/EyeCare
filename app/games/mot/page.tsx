@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Play, Target, RefreshCcw, Info, CheckCircle, XCircle } from 'lucide-react';
+import { saveTrainingSession } from '@/lib/progress-tracker';
 
 interface Ball {
   id: number;
@@ -19,6 +20,9 @@ export default function MOTGame() {
   const [level, setLevel] = useState(1);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [totalRounds, setTotalRounds] = useState(0);
+  const [startTime, setStartTime] = useState<number>(0);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ballsRef = useRef<Ball[]>([]);
@@ -216,10 +220,21 @@ export default function MOTGame() {
       
       const correct = selected.filter(s => s.isTarget).length;
       const wrong = selected.filter(s => !s.isTarget).length;
+      const isCorrect = correct === targets.length && wrong === 0;
       
-      if (correct === targets.length && wrong === 0) {
+      const newTotalRounds = totalRounds + 1;
+      setTotalRounds(newTotalRounds);
+      if (isCorrect) setCorrectCount(c => c + 1);
+      
+      if (isCorrect) {
           // Perfect
           setScore(s => s + (100 * level));
+          
+          // Save progress every 5 successful rounds
+          if (newTotalRounds % 5 === 0) {
+            saveProgress(newTotalRounds);
+          }
+          
           setTimeout(() => {
               setLevel(l => l + 1);
               startNextRound();
@@ -234,9 +249,28 @@ export default function MOTGame() {
                  startNextRound();
              }, 2000);
           } else {
-              // Game Over logic handled in render
+              // Game Over - save final progress
+              saveProgress(newTotalRounds);
           }
       }
+  };
+
+  const saveProgress = (rounds: number) => {
+    const duration = (Date.now() - startTime) / 1000;
+    const accuracy = rounds > 0 ? (correctCount / rounds) * 100 : 0;
+    
+    saveTrainingSession({
+      gameType: 'mot',
+      timestamp: Date.now(),
+      duration,
+      score,
+      difficulty: level,
+      accuracy,
+      rounds,
+      metadata: {
+        targetCount: Math.min(2 + Math.floor(level / 2), 6)
+      }
+    });
   };
 
   const startNextRound = () => {
@@ -244,6 +278,9 @@ export default function MOTGame() {
           setLives(3);
           setScore(0);
           setLevel(1);
+          setCorrectCount(0);
+          setTotalRounds(0);
+          setStartTime(Date.now());
       }
       setGameState('cue');
       initLevel();

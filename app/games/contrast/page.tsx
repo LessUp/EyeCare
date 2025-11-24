@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Play, Info, Award } from 'lucide-react';
+import { saveTrainingSession } from '@/lib/progress-tracker';
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 
@@ -17,6 +18,9 @@ export default function ContrastSensitivityGame() {
   const [isWaitingInput, setIsWaitingInput] = useState(false);
   const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
   const [bestContrast, setBestContrast] = useState(100);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [totalRounds, setTotalRounds] = useState(0);
+  const [startTime, setStartTime] = useState<number>(0);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
@@ -114,6 +118,10 @@ export default function ContrastSensitivityGame() {
     
     const correct = direction === targetDirection;
     
+    const newTotalRounds = totalRounds + 1;
+    setTotalRounds(newTotalRounds);
+    if (correct) setCorrectCount(c => c + 1);
+    
     if (correct) {
       setFeedback('correct');
       const newConsecutive = consecutiveCorrect + 1;
@@ -140,7 +148,30 @@ export default function ContrastSensitivityGame() {
       setCurrentContrast(newContrast);
     }
     
+    // Save progress every 20 rounds
+    if (newTotalRounds > 0 && newTotalRounds % 20 === 0) {
+      saveProgress(newTotalRounds);
+    }
+    
     setTimeout(startRound, 1000);
+  };
+
+  const saveProgress = (rounds: number) => {
+    const duration = (Date.now() - startTime) / 1000;
+    const accuracy = rounds > 0 ? (correctCount / rounds) * 100 : 0;
+    
+    saveTrainingSession({
+      gameType: 'contrast',
+      timestamp: Date.now(),
+      duration,
+      score,
+      difficulty: Math.round((100 - currentContrast) / 5),
+      accuracy,
+      rounds,
+      metadata: {
+        bestContrast
+      }
+    });
   };
 
   const startGame = () => {
@@ -150,6 +181,9 @@ export default function ContrastSensitivityGame() {
     setCurrentContrast(80);
     setConsecutiveCorrect(0);
     setBestContrast(100);
+    setCorrectCount(0);
+    setTotalRounds(0);
+    setStartTime(Date.now());
     startRound();
   };
 

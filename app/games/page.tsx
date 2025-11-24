@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Brain, Target, ArrowLeft, Award, Info } from 'lucide-react';
+import { Brain, Target, ArrowLeft, Award, Info, Crosshair, Eye, TrendingUp } from 'lucide-react';
 
 const games = [
   {
@@ -25,16 +25,36 @@ const games = [
     icon: <Award className="w-8 h-8 text-blue-500" />,
     href: '/games/contrast',
     paper: 'Pelli, D. G., & Bex, P. (2013). Measuring contrast sensitivity.'
+  },
+  {
+    id: 'vernier',
+    title: 'Vernier Acuity',
+    description: 'Train hyperacuity by detecting tiny misalignments between line segments - precision at the photoreceptor level.',
+    icon: <Crosshair className="w-8 h-8 text-cyan-500" />,
+    href: '/games/vernier',
+    paper: 'Westheimer, G. (1979). The spatial sense of the eye.'
+  },
+  {
+    id: 'crowding',
+    title: 'Crowding Reduction',
+    description: 'Overcome visual crowding effects in peripheral vision to improve reading speed and object recognition.',
+    icon: <Eye className="w-8 h-8 text-emerald-500" />,
+    href: '/games/crowding',
+    paper: 'Pelli, D. G., et al. (2004). Crowding is unlike ordinary masking.'
   }
 ];
 
 export default function GamesPage() {
   return (
     <div className="py-8 max-w-6xl mx-auto px-4">
-      <div className="mb-8">
+      <div className="mb-8 flex items-center justify-between">
         <Link href="/" className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Tests
+        </Link>
+        <Link href="/progress" className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all shadow-sm font-semibold">
+          <TrendingUp className="w-4 h-4 mr-2" />
+          View Progress
         </Link>
       </div>
 

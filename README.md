@@ -14,6 +14,8 @@
 
 基于最新科学研究的游戏化训练项目，可改善视觉功能：
 
+### 核心训练游戏
+
 - **Gabor Patch Training**（Gabor斑训练）
   - 提升视力敏锐度和对比敏感度
   - 基于论文：Polat et al. (2004) PNAS
@@ -25,6 +27,26 @@
 - **Contrast Sensitivity Training**（对比敏感度训练）
   - 改善低对比度物体的识别能力
   - 基于论文：Pelli & Bex (2013) Vision Research
+
+### 高级训练游戏
+
+- **Vernier Acuity**（超敏锐度训练）
+  - 训练亚像素级别的位置辨别能力
+  - 基于论文：Westheimer (1979) IOVS
+
+- **Crowding Reduction**（拥挤效应减少）
+  - 改善周边视觉的物体识别能力
+  - 基于论文：Pelli et al. (2004) J Vision
+
+### 进度追踪系统 📊
+
+- **本地存储**：所有训练记录保存在浏览器本地
+- **性能可视化**：准确率、得分、难度进展曲线
+- **统计分析**：总训练时长、平均准确率、改善幅度
+- **连续训练天数**：激励系统，追踪训练习惯
+- **数据导出/导入**：JSON格式，可备份和迁移
+
+访问 `/progress` 页面查看您的训练进度！
 
 详细的科学依据和研究引用请查看 [SCIENTIFIC_REFERENCES.md](./SCIENTIFIC_REFERENCES.md)。
 
@@ -57,12 +79,21 @@ npm run dev
   - `field/`：视野范围测试
   - `micro-perimetry/`：微视野测试
   - `games/`：视力训练游戏
+    - `page.tsx`：游戏列表页
     - `gabor/`：Gabor斑训练
     - `mot/`：多物体追踪
     - `contrast/`：对比敏感度训练
+    - `vernier/`：超敏锐度训练
+    - `crowding/`：拥挤效应减少训练
+  - `progress/`：训练进度追踪页面
   - `about/`：项目说明与免责声明
-- `components/Calibration.tsx`：屏幕物理尺寸校准组件
-- `SCIENTIFIC_REFERENCES.md`：科学研究引用和参考文献
+- `components/`：
+  - `Calibration.tsx`：屏幕物理尺寸校准组件
+  - `LineChart.tsx`：性能曲线图表组件
+- `lib/`：
+  - `progress-tracker.ts`：进度追踪核心逻辑
+- `SCIENTIFIC_REFERENCES.md`：科学研究引用和参考文献（30+ 篇论文）
+- `IMPLEMENTATION_SUMMARY.md`：实施总结和技术文档
 
 ## 注意事项
 
