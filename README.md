@@ -1,6 +1,8 @@
 # EyeCare Pro
 
-一个基于 Next.js + Tailwind CSS 的在线视力检测网站，包含以下模块：
+一个基于 Next.js + Tailwind CSS 的在线视力检测与训练网站，包含以下模块：
+
+## 诊断测试模块
 
 - 视力表检测（Tumbling E / LogMAR）
 - 色盲检测（类 Farnsworth D-15 排列测试）
@@ -8,7 +10,25 @@
 - 视野范围（周边视野）筛查
 - 微视野（黄斑功能）筛查
 
-> 本项目仅用于**科普与筛查**，不是医疗器械，不能替代专业眼科检查。
+## 视力训练游戏（新增！🎮）
+
+基于最新科学研究的游戏化训练项目，可改善视觉功能：
+
+- **Gabor Patch Training**（Gabor斑训练）
+  - 提升视力敏锐度和对比敏感度
+  - 基于论文：Polat et al. (2004) PNAS
+  
+- **Multiple Object Tracking**（多物体追踪）
+  - 增强动态视觉注意力和观察能力
+  - 基于论文：Green & Bavelier (2003) Nature
+  
+- **Contrast Sensitivity Training**（对比敏感度训练）
+  - 改善低对比度物体的识别能力
+  - 基于论文：Pelli & Bex (2013) Vision Research
+
+详细的科学依据和研究引用请查看 [SCIENTIFIC_REFERENCES.md](./SCIENTIFIC_REFERENCES.md)。
+
+> 本项目仅用于**科普、筛查与训练**，不是医疗器械，不能替代专业眼科检查。
 
 ## 技术栈
 
@@ -30,14 +50,19 @@ npm run dev
 ## 目录结构（简要）
 
 - `app/`：
-  - `page.tsx`：首页，列出所有检测模块
+  - `page.tsx`：首页，列出所有检测模块和训练游戏
   - `acuity/`：视力表检测
   - `color-blindness/`：色盲检测
   - `sensitivity/`：颜色敏感度测试
   - `field/`：视野范围测试
   - `micro-perimetry/`：微视野测试
+  - `games/`：视力训练游戏
+    - `gabor/`：Gabor斑训练
+    - `mot/`：多物体追踪
+    - `contrast/`：对比敏感度训练
   - `about/`：项目说明与免责声明
 - `components/Calibration.tsx`：屏幕物理尺寸校准组件
+- `SCIENTIFIC_REFERENCES.md`：科学研究引用和参考文献
 
 ## 注意事项
 

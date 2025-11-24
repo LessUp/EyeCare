@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Eye, Palette, Activity, Zap, ScanLine } from 'lucide-react';
+import { Eye, Palette, Activity, Zap, ScanLine, Brain } from 'lucide-react';
 
 const tests = [
   {
@@ -36,6 +36,13 @@ const tests = [
     description: 'Detailed assessment of central visual field sensitivity.',
     icon: <Activity className="w-8 h-8 text-red-500" />,
     href: '/micro-perimetry'
+  },
+  {
+    id: 'games',
+    title: 'Vision Training Games',
+    description: 'Gamified exercises to improve acuity and attention (Gabor, MOT).',
+    icon: <Brain className="w-8 h-8 text-indigo-500" />,
+    href: '/games'
   }
 ];
 
