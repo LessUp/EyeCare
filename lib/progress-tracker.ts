@@ -2,7 +2,7 @@
 // Uses localStorage for persistent data storage
 
 export interface GameSession {
-  gameType: 'gabor' | 'mot' | 'contrast' | 'vernier' | 'crowding';
+  gameType: 'gabor' | 'mot' | 'contrast' | 'vernier' | 'crowding' | 'visual-search' | 'schulte' | 'change-detection';
   timestamp: number;
   duration: number; // in seconds
   score: number;
@@ -13,6 +13,12 @@ export interface GameSession {
     bestContrast?: number;
     targetCount?: number;
     avgReactionTime?: number;
+    mode?: string;
+    gridSize?: number;
+    mistakes?: number;
+    avgClickInterval?: number;
+    bestStreak?: number;
+    difficultyMode?: string;
     [key: string]: any;
   };
 }

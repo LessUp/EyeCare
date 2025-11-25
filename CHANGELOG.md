@@ -1,5 +1,58 @@
 # 更新日志 (Changelog)
 
+## [v4.1.0] - 2025-11-25
+
+### 🎮 新增三款观察力训练游戏
+
+#### ✨ 新增游戏
+
+**1. 视觉搜索 (Visual Search)** `/games/visual-search`
+- 三种搜索模式：特征搜索、结合搜索、空间搜索
+- 基于 Treisman 特征整合理论设计
+- 自适应难度和反应时间追踪
+- 连击系统和详细统计
+- 论文支持: Treisman & Gelade (1980), Wolfe (2021)
+
+**2. 舒尔特表格 (Schulte Table)** `/games/schulte`
+- 支持 3×3 到 7×7 多种格子大小
+- 三种模式：顺序、倒序、红黑交替
+- 最佳时间记录和评级系统 (S/A/B/C/D)
+- 详细的点击间隔分析
+- 经典注意力广度训练工具
+
+**3. 变化盲视训练 (Change Detection)** `/games/change-detection`
+- 检测场景变化：颜色、位置、大小、形状、消失
+- 基于 Rensink 变化盲视研究设计
+- 三档难度调节
+- 闪烁范式（Flicker Paradigm）
+- 论文支持: Rensink et al. (1997), Simons & Levin (1998)
+
+#### 🔬 科学依据新增
+
+**新增论文引用:**
+- Treisman, A. M., & Gelade, G. (1980). A feature-integration theory of attention. *Cognitive Psychology*.
+- Wolfe, J. M. (2021). Guided Search 6.0. *Psychonomic Bulletin & Review*.
+- Rensink, R. A., et al. (1997). To see or not to see. *Psychological Science*.
+- Simons, D. J., & Levin, D. T. (1998). Failure to detect changes. *Psychonomic Bulletin & Review*.
+- Thorpe, S. J., et al. (2001). Detection using far peripheral vision. *European Journal of Neuroscience*.
+
+#### 🎨 UI/UX 改进
+
+- 游戏列表页面全面改版
+- 新增游戏分类标签（视觉/注意力/知觉）
+- NEW 标签动画效果
+- 中英文双语支持优化
+- 深色模式适配完善
+- 研究文献展示横幅
+
+#### 🛠 技术更新
+
+- 扩展 `GameSession` 接口支持新游戏类型
+- 添加新的 metadata 字段：mode, gridSize, mistakes, avgClickInterval, bestStreak
+- 优化进度追踪系统
+
+---
+
 ## [v4.0.0] - 2025-11-25
 
 ### 🎉 重大版本更新 - AI智能分析与用户体系

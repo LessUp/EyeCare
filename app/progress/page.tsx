@@ -15,12 +15,15 @@ import {
 } from '@/lib/progress-tracker';
 import LineChart from '@/components/LineChart';
 
-const GAME_NAMES = {
-  gabor: 'Gabor Patch',
-  mot: 'Multiple Object Tracking',
-  contrast: 'Contrast Sensitivity',
-  vernier: 'Vernier Acuity',
-  crowding: 'Crowding Reduction'
+const GAME_NAMES: Record<string, { zh: string; en: string }> = {
+  gabor: { zh: 'Gabor斑训练', en: 'Gabor Patch' },
+  mot: { zh: '多目标追踪', en: 'Multiple Object Tracking' },
+  contrast: { zh: '对比敏感度', en: 'Contrast Sensitivity' },
+  vernier: { zh: '游标视力', en: 'Vernier Acuity' },
+  crowding: { zh: '拥挤效应', en: 'Crowding Reduction' },
+  'visual-search': { zh: '视觉搜索', en: 'Visual Search' },
+  schulte: { zh: '舒尔特表格', en: 'Schulte Table' },
+  'change-detection': { zh: '变化盲视', en: 'Change Detection' },
 };
 
 const GAME_ICONS: Record<string, React.ReactNode> = {
@@ -28,7 +31,10 @@ const GAME_ICONS: Record<string, React.ReactNode> = {
   mot: <Target className="w-5 h-5" />,
   contrast: <Zap className="w-5 h-5" />,
   vernier: <Zap className="w-5 h-5" />,
-  crowding: <Zap className="w-5 h-5" />
+  crowding: <Zap className="w-5 h-5" />,
+  'visual-search': <Target className="w-5 h-5" />,
+  schulte: <Brain className="w-5 h-5" />,
+  'change-detection': <Zap className="w-5 h-5" />,
 };
 
 export default function ProgressPage() {
@@ -209,7 +215,7 @@ export default function ProgressPage() {
         {/* Game Statistics */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
           <h3 className="text-lg font-bold text-gray-900 mb-4">各游戏统计</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {Object.entries(GAME_NAMES).map(([gameType, gameName]) => {
               const stats = gameStats[gameType];
               if (!stats) {
@@ -217,7 +223,7 @@ export default function ProgressPage() {
                   <div key={gameType} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                     <div className="flex items-center gap-2 mb-3">
                       {GAME_ICONS[gameType]}
-                      <span className="font-semibold text-gray-900">{gameName}</span>
+                      <span className="font-semibold text-gray-900">{gameName.zh}</span>
                     </div>
                     <p className="text-sm text-gray-500">暂无训练记录</p>
                   </div>
@@ -228,7 +234,7 @@ export default function ProgressPage() {
                 <div key={gameType} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
                   <div className="flex items-center gap-2 mb-3">
                     {GAME_ICONS[gameType]}
-                    <span className="font-semibold text-gray-900">{gameName}</span>
+                    <span className="font-semibold text-gray-900">{gameName.zh}</span>
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -262,7 +268,7 @@ export default function ProgressPage() {
               className="px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {Object.entries(GAME_NAMES).map(([gameType, gameName]) => (
-                <option key={gameType} value={gameType}>{gameName}</option>
+                <option key={gameType} value={gameType}>{gameName.zh}</option>
               ))}
             </select>
           </div>

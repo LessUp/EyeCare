@@ -264,16 +264,153 @@ Evidence shows training benefits can transfer to:
 
 ---
 
+## 6. Visual Search Training
+
+### Scientific Basis
+
+**Visual search** is a fundamental cognitive task that requires attention to locate a target among distractors. The **Feature Integration Theory** (Treisman & Gelade, 1980) and **Guided Search Model** (Wolfe, 2021) provide the theoretical foundation.
+
+### Key Mechanisms
+
+- **Feature Search**: Parallel processing when targets differ by a single feature
+- **Conjunction Search**: Serial processing when targets require binding multiple features
+- **Attentional Control**: Top-down guidance improves search efficiency
+
+### Clinical Applications
+
+- **ADHD**: Improving sustained attention and search efficiency
+- **Dyslexia**: Training visual scanning for reading
+- **Aging**: Maintaining cognitive function in older adults
+
+### Primary Research Citations
+
+1. **Treisman, A. M., & Gelade, G. (1980).** A feature-integration theory of attention. *Cognitive Psychology, 12*(1), 97-136.
+   - **Classic paper**: Established the distinction between feature and conjunction search
+   - **DOI**: 10.1016/0010-0285(80)90005-5
+
+2. **Wolfe, J. M. (2021).** Guided Search 6.0: An updated model of visual search. *Psychonomic Bulletin & Review, 28*, 1060-1092.
+   - **Major update**: Incorporates 40 years of research into a comprehensive model
+   - **DOI**: 10.3758/s13423-020-01859-9
+
+3. **Wolfe, J. M., & Horowitz, T. S. (2017).** Five factors that guide attention in visual search. *Nature Human Behaviour, 1*(3), 0058.
+   - **Review**: Bottom-up salience, top-down goals, scene guidance, value, and history
+   - **DOI**: 10.1038/s41562-017-0058
+
+---
+
+## 7. Change Detection (Change Blindness) Training
+
+### Scientific Basis
+
+**Change blindness** is the failure to detect changes in visual scenes, especially when changes occur during saccades, blinks, or blank intervals. Training can improve change detection sensitivity.
+
+### Key Mechanisms
+
+- **Visual Working Memory**: Limited capacity determines detection ability
+- **Attention Allocation**: Changes to attended objects are detected more reliably
+- **Scene Representation**: Sparse vs. detailed representations
+
+### Clinical Applications
+
+- **Driving Safety**: Detecting road hazards and pedestrians
+- **Medical Imaging**: Radiologist training for lesion detection
+- **Security**: Surveillance monitoring effectiveness
+
+### Primary Research Citations
+
+1. **Rensink, R. A., O'Regan, J. K., & Clark, J. J. (1997).** To see or not to see: The need for attention to perceive changes in scenes. *Psychological Science, 8*(5), 368-373.
+   - **Seminal paper**: Introduced the flicker paradigm for studying change blindness
+   - **DOI**: 10.1111/j.1467-9280.1997.tb00427.x
+
+2. **Simons, D. J., & Levin, D. T. (1998).** Failure to detect changes to people during a real-world interaction. *Psychonomic Bulletin & Review, 5*(4), 644-649.
+   - **Classic study**: "Door study" demonstrating real-world change blindness
+   - **DOI**: 10.3758/BF03208840
+
+3. **Rensink, R. A. (2002).** Change detection. *Annual Review of Psychology, 53*(1), 245-277.
+   - **Comprehensive review**: Theoretical and methodological overview
+   - **DOI**: 10.1146/annurev.psych.53.100901.135125
+
+4. **Vogel, E. K., Woodman, G. F., & Luck, S. J. (2001).** Storage of features, conjunctions, and objects in visual working memory. *Journal of Experimental Psychology: Human Perception and Performance, 27*(1), 92-114.
+   - **VWM capacity**: Approximately 3-4 objects can be stored in VWM
+   - **DOI**: 10.1037/0096-1523.27.1.92
+
+---
+
+## 8. Schulte Table (Attention Span) Training
+
+### Scientific Basis
+
+**Schulte tables** are grid-based exercises that train visual attention span (perceptual span) and improve the efficiency of visual search in structured displays. They are widely used in reading improvement and attention training programs.
+
+### Key Mechanisms
+
+- **Perceptual Span**: Expanding the region of useful visual information
+- **Saccadic Control**: Improving eye movement efficiency
+- **Parallel Processing**: Training simultaneous processing of multiple items
+
+### Clinical Applications
+
+- **Speed Reading**: Expanding useful field of view for reading
+- **ADHD Treatment**: Training sustained and divided attention
+- **Sports Training**: Improving peripheral awareness (used by athletes)
+
+### Primary Research Citations
+
+1. **Thorpe, S. J., Gegenfurtner, K. R., Fabre-Thorpe, M., & Bülthoff, H. H. (2001).** Detection of animals in natural images using far peripheral vision. *European Journal of Neuroscience, 14*(5), 869-876.
+   - **Peripheral vision**: Demonstrates rapid categorization in peripheral vision
+   - **DOI**: 10.1046/j.0953-816x.2001.01717.x
+
+2. **Ball, K. K., Beard, B. L., Roenker, D. L., Miller, R. L., & Griggs, D. S. (1988).** Age and visual search: Expanding the useful field of view. *Journal of the Optical Society of America A, 5*(12), 2210-2219.
+   - **Useful Field of View (UFOV)**: Training can expand UFOV in older adults
+   - **DOI**: 10.1364/JOSAA.5.002210
+
+3. **Eriksen, C. W., & St. James, J. D. (1986).** Visual attention within and around the field of focal attention: A zoom lens model. *Perception & Psychophysics, 40*(4), 225-240.
+   - **Zoom lens model**: Attention can be focused narrowly or spread broadly
+   - **DOI**: 10.3758/BF03211502
+
+---
+
+## Implementation Notes
+
+### Gabor Patch Parameters
+- **Spatial Frequency**: 2.5 cycles/degree (optimized for foveal vision)
+- **Contrast**: Adaptive (starts at 80%, decreases with performance)
+- **Orientation**: ±2° to ±20° (increases difficulty)
+- **Presentation Time**: 200-500ms (brief to prevent eye movements)
+
+### MOT Parameters
+- **Number of Targets**: 2-6 (increases with level)
+- **Total Objects**: 8-20 (higher density increases difficulty)
+- **Speed**: 2-6 degrees/second
+- **Tracking Duration**: 5-10 seconds
+
+### Visual Search Parameters
+- **Set Size**: 12-40 items (increases with level)
+- **Target-Distractor Similarity**: Varies by mode (feature vs. conjunction)
+- **Response Time Window**: Adaptive based on difficulty
+
+### Change Detection Parameters
+- **Flicker Rate**: 600-1000ms display, 100-200ms blank
+- **Change Types**: Color, position, size, shape, disappearance
+- **Number of Objects**: 4-20 (increases with level)
+
+### Schulte Table Parameters
+- **Grid Size**: 3×3 to 7×7 (difficulty progression)
+- **Modes**: Sequential, reverse, red-black alternating
+- **Performance Metrics**: Total time, average per cell, error count
+
+---
+
 ## Future Enhancements
 
 Based on cutting-edge research, future versions could include:
 
-1. **Contrast Sensitivity Training**: Full CSF assessment and training
-2. **Vernier Acuity**: Hyperacuity training for position discrimination
-3. **Crowding Reduction**: Training to reduce peripheral crowding effects
-4. **3D Stereoscopic MOT**: Depth perception integration
-5. **Adaptive Difficulty**: Machine learning algorithms for personalized training
-6. **Progress Tracking**: Long-term performance analytics and retention curves
+1. **3D Stereoscopic MOT**: Depth perception integration with binocular disparity
+2. **Adaptive Difficulty via ML**: Machine learning algorithms for personalized training curves
+3. **Peripheral Vision Training**: Explicit useful field of view expansion exercises
+4. **Dual-Task Training**: Combining visual tasks with cognitive load
+5. **Eye-Tracking Integration**: Real-time gaze-contingent training
+6. **VR/AR Implementation**: Immersive training environments
 
 ---
 
@@ -281,4 +418,4 @@ Based on cutting-edge research, future versions could include:
 
 For questions about the scientific implementation or to suggest improvements based on recent literature, please open an issue on the project repository.
 
-**Last Updated**: November 2024
+**Last Updated**: November 2025

@@ -320,6 +320,11 @@ function HistoryTab({ results, lang }: { results: TestResult[]; lang: string }) 
     mot: { zh: '多目标追踪', en: 'MOT Training' },
     contrast: { zh: '对比敏感度', en: 'Contrast Sensitivity' },
     acuity: { zh: '视力测试', en: 'Visual Acuity' },
+    'visual-search': { zh: '视觉搜索', en: 'Visual Search' },
+    schulte: { zh: '舒尔特表格', en: 'Schulte Table' },
+    'change-detection': { zh: '变化盲视', en: 'Change Detection' },
+    vernier: { zh: '游标视力', en: 'Vernier Acuity' },
+    crowding: { zh: '拥挤效应', en: 'Crowding Reduction' },
   };
 
   return (
@@ -441,6 +446,12 @@ function ShareTab({ results, streak, lang }: { results: TestResult[]; streak: an
       gabor: 'Gabor斑训练',
       mot: '多目标追踪',
       contrast: '对比敏感度',
+      'visual-search': '视觉搜索',
+      schulte: '舒尔特表格',
+      'change-detection': '变化盲视',
+      vernier: '游标视力',
+      crowding: '拥挤效应',
+      acuity: '视力测试',
     };
 
     generateShareCard(canvas, {
