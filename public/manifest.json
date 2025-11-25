@@ -1,0 +1,35 @@
+{
+  "name": "EyeCare Pro - 专业视力健康管理",
+  "short_name": "EyeCare Pro",
+  "description": "基于最新眼科研究的视力测试、视觉训练和AI健康分析平台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "medical", "education"],
+  "lang": "zh-CN",
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EyeCare Pro Home"
+    }
+  ]
+}
