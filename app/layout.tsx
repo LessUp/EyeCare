@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 import { Navbar } from "@/components/ui/navbar";
 
 export const metadata: Metadata = {
-  title: "EyeCare Pro - Advanced Vision Testing",
-  description: "Comprehensive online vision testing suite / 综合在线视力测试套件",
+  title: "EyeCare Pro - 专业视力健康管理平台",
+  description: "基于最新眼科研究的视力测试、视觉训练和AI健康分析平台 | Professional vision testing, training and AI health analysis platform",
+  keywords: ["视力测试", "眼健康", "视觉训练", "Gabor", "MOT", "AI分析", "eye care", "vision training"],
+  authors: [{ name: "EyeCare Pro Team" }],
+  openGraph: {
+    title: "EyeCare Pro - 专业视力健康管理",
+    description: "科学护眼，AI助力 - 基于最新研究的视力训练平台",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -24,12 +32,14 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LanguageProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Navbar />
-              <main className="flex-1">
-                {children}
-              </main>
-            </div>
+            <AuthProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <Navbar />
+                <main className="flex-1">
+                  {children}
+                </main>
+              </div>
+            </AuthProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>
